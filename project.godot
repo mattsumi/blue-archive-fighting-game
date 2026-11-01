@@ -10,7 +10,7 @@ config_version=5
 
 [application]
 
-config/name="Blue Archive Fighting Game (Tentative)"
+config/name="Local"
 config/description="Fan-made Blue Archive fighting game."
 run/main_scene="res://scenes/main.tscn"
 config/use_custom_user_dir=true
