@@ -73,3 +73,7 @@ ba_ambient={
 "type": "vec3",
 "value": Vector3(0.07, 0.07, 0.07)
 }
+
+[upa]
+
+k=1
