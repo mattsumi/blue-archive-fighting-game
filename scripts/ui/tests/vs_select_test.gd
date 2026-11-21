@@ -55,6 +55,7 @@ func _run() -> void:
 	await _select_poll()
 	await _select_cover()
 	_select_random_art()
+	_select_random_name()
 	await _select_crest_entrance()
 	check(BaArt.warnings().is_empty(), "no art name was missing or unknown (%s)" % str(BaArt.warnings()))
 	game.transition = real_transition
@@ -591,6 +592,17 @@ func _select_random_art() -> void:
 	for i in 60:
 		side.process(DT)
 	check(is_equal_approx(side._ink, 0.0), "the new art comes back to full colour")
+
+## Leaving "?" onto the fighter its silhouette shows swaps the RANDOM card for that fighter's name (issue #1).
+func _select_random_name() -> void:
+	var side = load("res://scripts/ui/select_side.gd").new().setup(1)
+	side.show_fighter(10004)
+	side.show_random(10005)
+	check(side._name.text == "RANDOM", "the ? tile shows the RANDOM card")
+	side.clear_random()
+	side.show_fighter(10005)
+	var want := Fighters.display_name(game.by_id[10005]).to_upper()
+	check(side._name.text == want, "stepping onto the silhouette's own fighter shows its name (%s, want %s)" % [side._name.text, want])
 
 # VS screen: the stage-start beat
 func _vs_beat() -> void:

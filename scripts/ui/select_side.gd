@@ -48,6 +48,7 @@ var _ghost_t := 1.0
 var _blur := 0.0
 var _blur_to := 0.0
 var _flash := 0.0
+var _random_block := false       # the text block shows "?"'s RANDOM card, not fighter_id's stats
 var _ink := 0.0                  # 0 = full colour, 1 = dark silhouette (the "?" random tile), eased toward _ink_to
 var _ink_to := 0.0
 var _ghost_ink := 0.0            # the ink the ghost's art was showing when it was swapped out
@@ -110,6 +111,8 @@ func start() -> void:
 ## Show fighter `id` (a roster id); `random` shows the "?" tile's mystery card instead.
 func show_fighter(id: int) -> void:
 	if id == fighter_id:
+		if _random_block:     # leaving "?" onto the fighter its silhouette shows: the art is right, the text is not
+			_fighter_block(Game.by_id[id])
 		return
 	var tex := UI.portrait(id)
 	if tex == null:
@@ -124,6 +127,10 @@ func show_fighter(id: int) -> void:
 	_cur.texture = tex
 	_cur_frame = SelectFrames.frame(id, tex, slot)
 	_swap_t = 0.0 if _started and _in > 0.4 else 1.0
+	_fighter_block(s)
+
+func _fighter_block(s: Dictionary) -> void:
+	_random_block = false
 	_set_block(String(s["schoolName"]).to_upper(), String(s["school"]), Fighters.display_name(s).to_upper(),
 			[String(s.get("clubName", "")), Fighters.striker_type(s), Fighters.ease_of_use(s)])
 	_text_pop = 0.0
@@ -138,6 +145,7 @@ func show_random(id: int) -> void:
 		if cycling:
 			_swap_t = 1.0     # one dark silhouette for the next: no fade through the pale plate
 	_set_block("ANY SCHOOL", "", "RANDOM", [])
+	_random_block = true
 	_ink_to = 1.0
 
 func clear_random() -> void:
