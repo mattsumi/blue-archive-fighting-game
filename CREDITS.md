@@ -8,17 +8,6 @@ holds the list; a test keeps every link of it in this file.
 Blue Archive Fighting Game (Tentative) is a fan project. It is unofficial and has no connection with NEXON Games or Yostar.
 
 - mattsumi on GitHub: https://github.com/mattsumi
-- chikenuwu on GitHub: https://github.com/chikenuwu
-
-## Thanks
-
-Thanks to belovedSomnus for animation and coding, and to PpicomSi for models.
-
-Thanks to @ThatKirbo on Twitter for direction and moveset ideas.
-
-- belovedSomnus on GitHub: https://github.com/belovedSomnus
-- PpicomSi on GitHub: https://github.com/PpicomSi
-- ThatKirbo on Twitter: https://x.com/ThatKirbo
 
 ## Blue Archive
 
